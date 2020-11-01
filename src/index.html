@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/styles/index.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   <title>To Do List</title>
 </head>
 <body>
@@ -11,18 +12,27 @@
     <div class="app">
 
       <div class="header">
-        <div class="header__all-posts">All</div>
-        <div class="header__done-posts">Done</div>
+        <div class="header__all-posts">
+          <i class="fas fa-list-ul"></i>
+        </div>
+        <div class="header__done-posts">
+          <!-- <i class="fas fa-check"></i> -->
+          <i class="fas fa-check-double"></i>
+        </div>
       </div>
 
       <div class="posts-list">
         <div class="posts-list__item">
-          <span class="">Work more!!!</span>
+          <div class="checkbox">
+            <input class="custom-checkbox" type="checkbox" id="color-1" value="indigo">
+            <label for="color-1">Indigo</label>
+          </div>
         </div>
       </div>
 
       <div class="add-btn">
-        <div class="btn"></div>
+        <div class="btn">
+        </div>
       </div>
 
     </div>
