@@ -1,20 +1,20 @@
 // для створення записів/завдання
-const post = (id, text) => {
-  const parent = document.querySelector('.posts-list');
+const parent = document.querySelector('.posts-list');
+
+
+const post = (text) => {
   const element = document.createElement('div');
-  element.classList.add('posts-list__item')
+  element.classList.add('posts-list__item', 'checkbox', 'undone')
   element.innerText = text;
   element.innerHTML = `
-    <div class="checkbox">
-      <input class="custom-checkbox" type="checkbox" id="${id}" value="indigo">
-      <label for="${id}">${text}</label>
-    </div>
+      <input class="custom-checkbox" type="checkbox" id="${text}">
+      <label for="${text}">${text}</label>
   `;
   parent.append(element);
 }
 
-post('2','hello');
-post('3','work HARD!');
+post('hello');
+post('work HARD!');
 
 // відмітити як виконане зачеркнувши
 const postList = document.querySelector('.posts-list');
@@ -23,11 +23,48 @@ postList.addEventListener('click', (e) => {
   label.forEach(element => {
     if (e.target === element) {
       e.target.classList.toggle('cross-out');
+      e.target.parentNode.classList.toggle('done');
+      e.target.parentNode.classList.toggle('undone');
     }
   });
 })
 
 // btn 'add' анімація
-$('.btn').click(() => {
-  $('.post-input').slideToggle('1000');
+$('.plus-btn').click(() => {
+  const postInput = $('.post-input');
+  postInput.slideToggle('1000');
+  if ($('.post-input').css.display = 'inline-block') {
+    // console.log($('input:text').val());
+    $(this).keypress(function (e) {
+      const keycode = (e.keyCode ? e.keyCode : e.which);
+      if (keycode == '13') {
+        e.preventDefault();
+        const value = $('input:text').val();
+        post(value);
+        $('input:text').val('');
+        postInput.slideToggle('1000');
+      }
+    })
+  }
+})
+
+// Показує всі або виконані завдання
+const doneTaskBtn = document.querySelector('.header__done-posts');
+const allTaskBtn = document.querySelector('.header__all-posts');
+const postListItem = document.querySelectorAll('.posts-list__item');
+
+doneTaskBtn.addEventListener('click', () => {
+  postListItem.forEach(element => {
+    if (element.classList.contains('done')) {
+      element.style.display = 'block'
+    } else {
+      element.style.display = 'none'
+    }
+  });
+})
+
+allTaskBtn.addEventListener('click', () => {
+  postListItem.forEach(element => {
+    element.style.display = 'block'
+  })
 })
