@@ -26,3 +26,11 @@ postList.addEventListener('click', (e) => {
     }
   });
 })
+
+// btn 'add'
+const addBtn = document.querySelector('.btn');
+addBtn.addEventListener('click', () => {
+  const postInput = document.querySelector('.post-input');
+  // postInput.style.display = 'block';
+  postInput.classList.toggle('post-input-block');
+})

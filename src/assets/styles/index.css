@@ -47,10 +47,7 @@ body {
   right: 150px;
   background-color: gainsboro;
   z-index: 2;
-  display:inline-block;
-  width:50px;
-  height:50px;
-  
+
   background:
     linear-gradient(#fff,#fff),
     linear-gradient(#fff,#fff),
@@ -73,4 +70,16 @@ body {
 .cross-out {
   text-decoration: line-through;
   color: grey;
+}
+
+.post-input {
+  display: none;
+  position: absolute;
+  bottom: 35px;
+  left: 45px;
+  font-size: 20px;
+}
+
+.post-input-block {
+  display: block;
 }
