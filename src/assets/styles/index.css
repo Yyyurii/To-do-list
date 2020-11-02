@@ -1,5 +1,6 @@
-@import './checkbox.css';
 @import './resset.css';
+@import './checkbox.css';
+
 body {
   background-color: rgb(247, 187, 217);
 }
@@ -7,12 +8,12 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 20px auto 0;
   width: 300px;
   height: 500px;
   border: 1px solid gray;
   border-radius: 10px;
-  padding: 20px;
+  /* padding: 20px; */
   background-color: white;
   position: relative;
 }
@@ -20,13 +21,15 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  border-bottom: 1px solid grey;
+  padding: 40px 40px 20px;
+  background: linear-gradient(to right, white 50%, #8080802e 50%);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
+
 
 .header__all-posts {
   width: 50%;
-  border-right: 1px solid grey;
 }
 
 .header__done-posts {
@@ -38,6 +41,24 @@ body {
   font-size: 30px;
 }
 
+.header__line-between {
+  width: 1px;
+  height: 90px;
+  background-color: grey;
+  position: absolute;
+  top: 0;
+  right: 150px;
+}
+
+.header__line-bottom {
+  width: 150px;
+  height: 1px;
+  background: grey;
+  position: absolute;
+  top: 90px;
+  right: 0;
+}
+
 .plus-btn {
   width: 50px;
   height: 50px;
@@ -45,20 +66,23 @@ body {
   border-radius: 50%;
   position: absolute;
   bottom: -25px;
-  right: 150px;
+  right: 130px;
   background-color: gainsboro;
   z-index: 2;
 
   background:
-    linear-gradient(#fff,#fff),
-    linear-gradient(#fff,#fff),
+    linear-gradient(#fff, #fff),
+    linear-gradient(#fff, #fff),
     #ffba65;
-  background-position:center;
-  background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
-  background-repeat:no-repeat;
+  background-position: center;
+  background-size: 50% 2px, 2px 50%;
+  /*thickness = 2px, length = 50% (25px)*/
+  background-repeat: no-repeat;
 }
 
-
+.posts-list {
+  padding: 10px;
+}
 
 .posts-list__item {
   padding: 15px 10px;
@@ -77,7 +101,7 @@ body {
   display: none;
   position: absolute;
   bottom: 35px;
-  left: 45px;
+  left: 25px;
   font-size: 20px;
 }
 

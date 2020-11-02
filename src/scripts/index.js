@@ -1,7 +1,6 @@
 // для створення записів/завдання
 const parent = document.querySelector('.posts-list');
 
-
 const post = (text) => {
   const element = document.createElement('div');
   element.classList.add('posts-list__item', 'checkbox', 'undone')
@@ -30,6 +29,7 @@ postList.addEventListener('click', (e) => {
 })
 
 // btn 'add' анімація
+// при додаванні постів спрацьовує декілька раз, можливо помилка в цій функції
 $('.plus-btn').click(() => {
   const postInput = $('.post-input');
   postInput.slideToggle('1000');
@@ -51,20 +51,28 @@ $('.plus-btn').click(() => {
 // Показує всі або виконані завдання
 const doneTaskBtn = document.querySelector('.header__done-posts');
 const allTaskBtn = document.querySelector('.header__all-posts');
-const postListItem = document.querySelectorAll('.posts-list__item');
+const header = document.querySelector('.header');
+const headerLineBottom = document.querySelector('.header__line-bottom');
+let postListItem = document.querySelectorAll('.posts-list__item');
 
 doneTaskBtn.addEventListener('click', () => {
   postListItem.forEach(element => {
     if (element.classList.contains('done')) {
-      element.style.display = 'block'
+      element.style.display = 'block';
+      headerLineBottom.style.cssText = 'width: 150px; left: 0;';
+      header.style.cssText = 'background: linear-gradient(to right, #8080802e 50%, white 50%);';
     } else {
       element.style.display = 'none'
+      header.style.cssText = 'background: linear-gradient(to right, #8080802e 50%, white 50%);';
+      headerLineBottom.style.cssText = 'left: 0;';
     }
   });
 })
 
 allTaskBtn.addEventListener('click', () => {
   postListItem.forEach(element => {
-    element.style.display = 'block'
+    element.style.display = 'block';
+    header.style.cssText = 'background: linear-gradient(to right, white 50%, #8080802e 50%);';
+      headerLineBottom.style.cssText = 'right: 0;';
   })
 })
