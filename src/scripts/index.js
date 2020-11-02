@@ -1,3 +1,4 @@
+// для створення записів/завдання
 const post = (id, text) => {
   const parent = document.querySelector('.posts-list');
   const element = document.createElement('div');
@@ -15,12 +16,13 @@ const post = (id, text) => {
 post('2','hello');
 post('3','work HARD!');
 
+// відмітити як виконане зачеркнувши
 const postList = document.querySelector('.posts-list');
 postList.addEventListener('click', (e) => {
-  const label = document.getElementsByTagName('label');
-  for (let i = 0; i < label.length; i++) {
-    if (e.target === label[i]) {
+  const label = document.querySelectorAll('label');
+  label.forEach(element => {
+    if (e.target === element) {
       e.target.classList.toggle('cross-out');
     }
-  }
+  });
 })

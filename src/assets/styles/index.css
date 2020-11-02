@@ -28,6 +28,11 @@ body {
   border-right: 1px solid grey;
 }
 
+.header__done-posts {
+  width: 50%;
+  text-align: right;
+}
+
 .header i {
   font-size: 30px;
 }
