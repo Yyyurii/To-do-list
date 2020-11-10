@@ -82,6 +82,7 @@ body {
 
 .posts-list {
   padding: 10px;
+  overflow-y: auto;
 }
 
 .posts-list__item {
