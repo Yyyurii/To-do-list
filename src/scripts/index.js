@@ -1,5 +1,5 @@
 // для створення записів/завдання
-const parent = document.querySelector('.posts-list');
+const postList = document.querySelector('.posts-list');
 
 const post = (text) => {
   const element = document.createElement('div');
@@ -9,14 +9,13 @@ const post = (text) => {
       <input class="custom-checkbox" type="checkbox" id="${text}">
       <label for="${text}">${text}</label>
   `;
-  parent.append(element);
+  postList.append(element);
 }
 
 post('hello');
 post('work HARD!');
 
 // відмітити як виконане зачеркнувши
-const postList = document.querySelector('.posts-list');
 postList.addEventListener('click', (e) => {
   const label = document.querySelectorAll('label');
   label.forEach(element => {
