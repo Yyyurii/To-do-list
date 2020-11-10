@@ -1,5 +1,6 @@
 @import './resset.css';
 @import './checkbox.css';
+@import './extra-post-menu.css';
 
 body {
   background-color: rgb(247, 187, 217);
@@ -83,14 +84,24 @@ body {
 .posts-list {
   padding: 10px;
   overflow-y: auto;
+  height: 365px;
 }
 
 .posts-list__item {
   padding: 15px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.posts-list__item label {
+  cursor: pointer;
 }
 
 .posts-list__item i {
   padding: 0 10px 0 0;
+  cursor: pointer;
 }
 
 .cross-out {

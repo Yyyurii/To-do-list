@@ -4,11 +4,18 @@ const postInput = $('.post-input');
 
 const post = (text) => {
   const element = document.createElement('div');
-  element.classList.add('posts-list__item', 'checkbox', 'undone')
+  element.classList.add('posts-list__item', 'checkbox')
   element.innerText = text;
   element.innerHTML = `
       <input class="custom-checkbox" type="checkbox" id="${text}">
       <label for="${text}">${text}</label>
+      <i class="fas fa-ellipsis-v extra-menu-btn"></i>
+      <div class="extra-menu extra-menu-display">
+        <div class="arrow-up"></div>
+        <div class="extra-menu__item"><i class="fas fa-thumbtack"></i>Pin on the top</div>
+        <div class="extra-menu__item"><i class="fas fa-file-signature"></i>Add a memo</div>
+        <div class="extra-menu__item"><i class="fas fa-trash-alt"></i>Delete</div>
+      </div>
   `;
   postList.append(element);
 }
@@ -57,7 +64,7 @@ doneTaskBtn.addEventListener('click', () => {
   let postListItem = document.querySelectorAll('.posts-list__item');
   postListItem.forEach(element => {
     if (element.classList.contains('done')) {
-      element.style.display = 'block';
+      element.style.display = 'flex';
       headerLineBottom.style.cssText = 'width: 150px; left: 0;';
       header.style.cssText = 'background: linear-gradient(to right, #8080802e 50%, white 50%);';
     } else {
@@ -71,8 +78,18 @@ doneTaskBtn.addEventListener('click', () => {
 allTaskBtn.addEventListener('click', () => {
   let postListItem = document.querySelectorAll('.posts-list__item');
   postListItem.forEach(element => {
-    element.style.display = 'block';
+    element.style.display = 'flex';
     header.style.cssText = 'background: linear-gradient(to right, white 50%, #8080802e 50%);';
     headerLineBottom.style.cssText = 'right: 0;';
   })
+})
+
+
+postList.addEventListener('click', (e) => {
+  const extraMenuBtn = document.querySelectorAll('.extra-menu-btn');
+  extraMenuBtn.forEach(element => {
+    if (e.target === element) {
+      e.target.nextElementSibling.classList.toggle('extra-menu-display')
+    }
+  });
 })
