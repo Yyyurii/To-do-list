@@ -94,14 +94,15 @@ postList.addEventListener('click', (e) => {
 })
 
 // sorting
+// $(element).fadeIn('500');
+//  element.parentNode.prepend(element);
+//  $(element).fadeOut('500');
 postList.addEventListener('change', () => {
   let postListItem = document.querySelectorAll('.posts-list__item');
   console.log(postListItem);
   postListItem.forEach(element => {
     if (element.classList.contains('done')) {
-      $(element).fadeOut('1000');
       element.parentNode.prepend(element);
-      $(element).fadeIn('1000');
     }
   })
 })
