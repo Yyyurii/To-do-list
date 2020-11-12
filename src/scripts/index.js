@@ -46,7 +46,6 @@ postInput.keypress(function (e) {
   if (keycode == '13') {
     e.preventDefault();
     const value = $('input:text').val();
-    console.log(value);
     post(value);
     $('input:text').val('');
     postInput.slideToggle('1000');
@@ -84,7 +83,7 @@ allTaskBtn.addEventListener('click', () => {
   })
 })
 
-
+// extra menu
 postList.addEventListener('click', (e) => {
   const extraMenuBtn = document.querySelectorAll('.extra-menu-btn');
   extraMenuBtn.forEach(element => {
@@ -92,4 +91,17 @@ postList.addEventListener('click', (e) => {
       e.target.nextElementSibling.classList.toggle('extra-menu-display')
     }
   });
+})
+
+// sorting
+postList.addEventListener('change', () => {
+  let postListItem = document.querySelectorAll('.posts-list__item');
+  console.log(postListItem);
+  postListItem.forEach(element => {
+    if (element.classList.contains('done')) {
+      $(element).fadeOut('1000');
+      element.parentNode.prepend(element);
+      $(element).fadeIn('1000');
+    }
+  })
 })

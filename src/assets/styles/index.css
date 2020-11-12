@@ -3,7 +3,7 @@
 @import './extra-post-menu.css';
 
 body {
-  background-color: rgb(247, 187, 217);
+  background: linear-gradient(to right, rgb(253 0 0 / 20%), rgb(230 82 49 / 82%));
 }
 
 .app {
@@ -101,6 +101,7 @@ body {
 
 .posts-list__item i {
   padding: 0 10px 0 0;
+  width: 15px;
   cursor: pointer;
 }
 
