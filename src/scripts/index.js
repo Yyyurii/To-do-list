@@ -17,7 +17,7 @@ const post = (text) => {
         <div class="extra-menu__item"><i class="fas fa-trash-alt"></i>Delete</div>
       </div>
   `;
-  postList.append(element);
+  postList.prepend(element);
 }
 
 post('hello');
@@ -25,6 +25,7 @@ post('work HARD!');
 
 // відмітити як виконане зачеркнувши
 postList.addEventListener('click', (e) => {
+  let postListItem = document.querySelectorAll('.posts-list__item');
   const label = document.querySelectorAll('label');
   label.forEach(element => {
     if (e.target === element) {
@@ -33,6 +34,29 @@ postList.addEventListener('click', (e) => {
       e.target.parentNode.classList.toggle('undone');
     }
   });
+
+  postListItem.forEach(element => {
+    if (element.classList.contains('done')) {
+      element.parentNode.append(element);
+
+      // const el = new Promise((resolve, reject) => {
+      //   $(element).fadeOut('500');
+      //   console.log('fade in')
+      //   resolve();
+      // });
+      // el.then(() => {
+      //   setTimeout(() => {
+      //     element.parentNode.append(element);
+      //     console.log('prepend element')
+      //   }, 500)
+      // })
+      //   .then(() => {
+      //     setTimeout(() => {
+      //       $(element).fadeIn('500');
+      //     }, 500)
+      //   })
+    }
+  })
 })
 
 // btn 'add' анімація
@@ -93,16 +117,4 @@ postList.addEventListener('click', (e) => {
   });
 })
 
-// sorting
-// $(element).fadeIn('500');
-//  element.parentNode.prepend(element);
-//  $(element).fadeOut('500');
-postList.addEventListener('change', () => {
-  let postListItem = document.querySelectorAll('.posts-list__item');
-  console.log(postListItem);
-  postListItem.forEach(element => {
-    if (element.classList.contains('done')) {
-      element.parentNode.prepend(element);
-    }
-  })
-})
+
