@@ -20,19 +20,30 @@ const post = (text) => {
   postList.prepend(element);
 }
 
+post('Work hard');
+post('Don\'t stop');
+
 // відмітити як виконане зачеркнувши та перемістити в кінець списку
-function letDownPost() {
-  firstPostDone.parentNode.append(firstPostDone);
+letDownPost = () => {
+  const allPosts = document.querySelectorAll('.done');
+  allPosts.forEach(element => {
+    postList.append(element);
+  })
 };
 
-postList.addEventListener('click', (e) => {
+onToggleDone = (event) => {
   const label = document.querySelectorAll('label');
   label.forEach(element => {
-    if (e.target === element) {
-      e.target.classList.toggle('cross-out');
-      e.target.parentNode.classList.toggle('done');
+    if (event.target === element) {
+      event.target.classList.toggle('cross-out');
+      event.target.parentNode.classList.toggle('done');
     }
   });
+}
+
+postList.addEventListener('click', (event) => {
+  onToggleDone(event);
+  letDownPost();
 })
 
 
@@ -87,3 +98,4 @@ allTaskBtn.addEventListener('click', () => {
 })
 
 
+// 
