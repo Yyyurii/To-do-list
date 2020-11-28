@@ -10,7 +10,7 @@ const post = (text) => {
       <input class="custom-checkbox" type="checkbox" id="${text}">
       <label for="${text}">${text}</label>
       <i class="fas fa-ellipsis-v extra-menu-btn"></i>
-      <div class="extra-menu extra-menu-display">
+        <div class="extra-menu hide">
         <div class="arrow-up"></div>
         <div class="extra-menu__item"><i class="fas fa-thumbtack"></i>Pin on the top</div>
         <div class="extra-menu__item"><i class="fas fa-file-signature"></i>Add a memo</div>
@@ -20,8 +20,8 @@ const post = (text) => {
   postList.prepend(element);
 }
 
-post('Work hard');
-post('Don\'t stop');
+post('Work');
+post('Don');
 
 // відмітити як виконане зачеркнувши та перемістити в кінець списку
 letDownPost = () => {
@@ -58,7 +58,7 @@ postInput.keypress(function (e) {
   if (keycode == '13') {
     e.preventDefault();
     const value = $('input:text').val();
-    if(value != '') {
+    if (value != '') {
       post(value);
       $('input:text').val('');
       postInput.slideToggle('1000');
@@ -98,4 +98,29 @@ allTaskBtn.addEventListener('click', () => {
 })
 
 
-// 
+// extra menu
+function showCover() {
+  let coverDiv = document.createElement('div');
+  coverDiv.id = 'cover-div';
+  document.querySelector('.posts-list').append(coverDiv);
+}
+
+function hideCover() {
+  document.getElementById('cover-div').remove();
+}
+
+const extraBtns = document.querySelectorAll('.extra-menu-btn');
+const extraMenu = document.querySelector('.extra-menu');
+
+extraBtns.forEach(element => {
+  element.addEventListener('click', (event) => {
+    if (element == event.target) {
+      element.nextElementSibling.classList.remove('hide');
+      showCover(); 
+    }
+    document.querySelector('#cover-div').addEventListener('click', () => {
+      hideCover();
+      element.nextElementSibling.classList.add('hide');
+    })
+  })
+})
