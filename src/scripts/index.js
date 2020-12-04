@@ -12,9 +12,9 @@ const post = (text) => {
       <i class="fas fa-ellipsis-v extra-menu-btn"></i>
         <div class="extra-menu hide">
         <div class="arrow-up"></div>
-        <div class="extra-menu__item"><i class="fas fa-thumbtack"></i>Pin on the top</div>
-        <div class="extra-menu__item"><i class="fas fa-file-signature"></i>Add a memo</div>
-        <div class="extra-menu__item"><i class="fas fa-trash-alt"></i>Delete</div>
+        <div class="extra-menu__item thumbtack"><i class="fas fa-thumbtack"></i>Pin on the top</div>
+        <div class="extra-menu__item file-signature"><i class="fas fa-file-signature"></i>Add a memo</div>
+        <div class="extra-menu__item trash-alt"><i class="fas fa-trash-alt"></i>Delete</div>
       </div>
   `;
   postList.prepend(element);
@@ -44,7 +44,9 @@ onToggleDone = (event) => {
 postList.addEventListener('click', (event) => {
   onToggleDone(event);
   letDownPost();
-})
+  onToggleExtraMenu(event);
+  pinTask(event);
+});
 
 
 // btn 'add' анімація
@@ -97,7 +99,6 @@ allTaskBtn.addEventListener('click', () => {
   })
 })
 
-
 // extra menu
 function showCover() {
   let coverDiv = document.createElement('div');
@@ -106,21 +107,39 @@ function showCover() {
 }
 
 function hideCover() {
-  document.getElementById('cover-div').remove();
+  const extraMenu = document.querySelectorAll('.extra-menu');
+  if (document.getElementById('cover-div')) {
+    document.getElementById('cover-div').remove();
+  }
+
+  extraMenu.forEach(element => {
+    element.classList.add('hide');
+  })
 }
 
-const extraBtns = document.querySelectorAll('.extra-menu-btn');
-const extraMenu = document.querySelector('.extra-menu');
+function onToggleExtraMenu(event) {
+  const extraBtns = document.querySelectorAll('.extra-menu-btn');
 
-extraBtns.forEach(element => {
-  element.addEventListener('click', (event) => {
+  extraBtns.forEach(element => {
     if (element == event.target) {
       element.nextElementSibling.classList.remove('hide');
-      showCover(); 
+      showCover();
     }
-    document.querySelector('#cover-div').addEventListener('click', () => {
-      hideCover();
-      element.nextElementSibling.classList.add('hide');
-    })
+    if (document.querySelector('#cover-div')) {
+      document.querySelector('#cover-div').addEventListener('click', () => {
+        hideCover();
+      })
+    }
   })
-})
+};
+
+function pinTask(event) {
+  const pinBtn = document.querySelectorAll('.fa-thumbtack');
+  console.log(pinBtn);
+  pinBtn.forEach( element => {
+    if (element == event.target) {
+      console.log(element.parentNode)
+    }
+  });
+};
+// pinTask();

@@ -13,6 +13,7 @@
 
 .extra-menu__item {
   padding: 5px;
+  cursor: pointer;
 }
 
 .arrow-up {

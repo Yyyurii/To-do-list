@@ -142,3 +142,12 @@ body {
   background-color: gray;
   opacity: 0.3;
 }
+
+.pin-board {
+  border-block-end: 1px solid;
+  padding: 5px;
+}
+
+.hide {
+  display: none;
+}
