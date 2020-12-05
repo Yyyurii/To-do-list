@@ -38,11 +38,11 @@ body {
 }
 
 
-.header__all-posts {
+.header__all-tasks {
   width: 50%;
 }
 
-.header__done-posts {
+.header__done-tasks {
   width: 50%;
   text-align: right;
 }
@@ -69,7 +69,7 @@ body {
   right: 0;
 }
 
-.plus-btn {
+.add-task-btn {
   width: 50px;
   height: 50px;
   border: 1px solid grey;
@@ -90,13 +90,13 @@ body {
   background-repeat: no-repeat;
 }
 
-.posts-list {
+.tasks-list {
   padding: 10px;
   overflow-y: auto;
   height: 365px;
 }
 
-.posts-list__item {
+.tasks-list__item {
   padding: 15px 10px;
   display: flex;
   align-items: center;
@@ -104,11 +104,11 @@ body {
   position: relative;
 }
 
-.posts-list__item label {
+.tasks-list__item label {
   cursor: pointer;
 }
 
-.posts-list__item i {
+.tasks-list__item i {
   padding: 0 10px 0 0;
   width: 15px;
   cursor: pointer;
@@ -119,15 +119,15 @@ body {
   color: grey;
 }
 
-.post-input {
-  display: none;
+.task-input {
+  /* display: none; */
   position: absolute;
   bottom: 35px;
   left: 25px;
   font-size: 20px;
 }
 
-.post-input-block {
+.task-input-block {
   display: block;
 }
 
@@ -143,7 +143,7 @@ body {
   opacity: 0.3;
 }
 
-.pin-board {
+.pinboard {
   border-block-end: 1px solid;
   padding: 5px;
 }
