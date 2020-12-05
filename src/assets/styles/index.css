@@ -114,9 +114,10 @@ body {
   cursor: pointer;
 }
 
-.cross-out {
+.checked {
   text-decoration: line-through;
   color: grey;
+  /* opacity: 0.5; */
 }
 
 .task-input {
