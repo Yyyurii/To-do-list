@@ -152,3 +152,7 @@ body {
 .hide {
   display: none;
 }
+
+.fixed {
+  display: block;
+}

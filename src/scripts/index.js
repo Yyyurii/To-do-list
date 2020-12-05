@@ -16,6 +16,9 @@ function Task(description) {
 const createTemplate = (task, index) => {
   return `
     <div class="tasks-list__item ${task.completed ? 'checked' : ''}">
+      <div class="${task.fixed ? '' : 'hide'}">
+        <i class="fas fa-thumbtack hide"></i>
+      </div>
       <input onclick="completeTask(${index})" class="custom-checkbox" type="checkbox" id="item_${index}" ${task.completed ? 'checked' : ''}>
       <label for="item_${index}">${task.description}</label>
       <i class="fas fa-ellipsis-v extra-menu-btn" onclick="onToggleExtraMenu(${index})" data-toggle="modal"></i>
@@ -49,11 +52,6 @@ const completeTask = index => {
 
 const fixedTask = index => {
   tasks[index].fixed = !tasks[index].fixed;
-  if (tasks[index].fixed) {
-    tasksListItem[index].classList.add('fixed');
-  } else {
-    tasksListItem[index].classList.remove('fixed');
-  }
   updateLocalStrg();
   fillTasksList();
 }
@@ -78,6 +76,17 @@ fillTasksList();
 
 const updateLocalStrg = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+const allTasks = () => {
+  tasks = JSON.parse(localStorage.getItem('tasks'));
+  fillTasksList();
+}
+
+const completedTasks = () => {
+  const completedTasks = tasks.length && tasks.filter(item => item.completed == true);
+  tasks = [...completedTasks];
+  fillTasksList();
 }
 
 addTaskBtn.addEventListener('click', () => {
