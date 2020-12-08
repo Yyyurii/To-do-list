@@ -1,6 +1,7 @@
 const taskInput = document.querySelector('.task-input');
 const addTaskBtn = document.querySelector('.add-task-btn');
 const tasksList = document.querySelector('.tasks-list');
+const calendarDate = document.querySelector('.calendar');
 
 let tasks;
 !localStorage.tasks ? tasks = [] : tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -12,6 +13,28 @@ function Task(description) {
   this.completed = false;
   this.fixed = false;
 };
+
+(() => {
+  const newDate = new Date();
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  let nowDay;
+  let nowMonth;
+  days.forEach((item, index) => {
+    if (index == newDate.getDay()) {
+      nowDay = item;
+    }
+  });
+  month.forEach((item, index) => {
+    if (index == newDate.getMonth()) {
+      nowMonth = item;
+    }
+  })
+  calendarDate.innerHTML = `
+    <div class="">${nowDay}</div>
+    <div class="">${nowMonth} ${newDate.getDate()}, ${newDate.getFullYear()}</div>
+  `
+})();
 
 const createTemplate = (task, index) => {
   return `
@@ -123,3 +146,6 @@ function onToggleExtraMenu(index) {
     })
   }
 };
+
+const calendar = new Date();
+console.log('calendar', calendar)

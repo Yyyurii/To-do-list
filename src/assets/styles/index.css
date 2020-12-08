@@ -156,3 +156,15 @@ body {
 .fixed {
   display: block;
 }
+
+.calendar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  font-size: 25px;
+  background-color: rgb(255, 237, 138);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
