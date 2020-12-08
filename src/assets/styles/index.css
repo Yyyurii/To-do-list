@@ -104,6 +104,10 @@ body {
   position: relative;
 }
 
+.tasks-list__item .delition {
+  animation: opacity 1s ease-in-out;
+}
+
 .tasks-list__item label {
   cursor: pointer;
 }
@@ -157,6 +161,11 @@ body {
   display: block;
 }
 
+.thumbtack {
+  display: flex;
+  align-items: center;
+}
+
 .calendar {
   display: flex;
   justify-content: space-around;
@@ -167,4 +176,13 @@ body {
   background-color: rgb(255, 237, 138);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

@@ -39,11 +39,13 @@ function Task(description) {
 const createTemplate = (task, index) => {
   return `
     <div class="tasks-list__item ${task.completed ? 'checked' : ''}">
-      <div class="${task.fixed ? '' : 'hide'}">
-        <i class="fas fa-thumbtack hide"></i>
+      <div class="thumbtack">
+        <div class="${task.fixed ? '' : 'hide'}">
+          <i class="fas fa-thumbtack hide"></i>
+        </div>
+        <input onclick="completeTask(${index})" class="custom-checkbox" type="checkbox" id="item_${index}" ${task.completed ? 'checked' : ''}>
+        <label for="item_${index}">${task.description}</label>
       </div>
-      <input onclick="completeTask(${index})" class="custom-checkbox" type="checkbox" id="item_${index}" ${task.completed ? 'checked' : ''}>
-      <label for="item_${index}">${task.description}</label>
       <i class="fas fa-ellipsis-v extra-menu-btn" onclick="onToggleExtraMenu(${index})" data-toggle="modal"></i>
       <div class="extra-menu hide">
         <div class="arrow-up"></div>
@@ -80,6 +82,7 @@ const fixedTask = index => {
 }
 
 const deleteTask = index => {
+  tasksListItem[index].classList.add('delition');
   tasks.splice(index, 1);
   updateLocalStrg();
   fillTasksList();
@@ -146,6 +149,3 @@ function onToggleExtraMenu(index) {
     })
   }
 };
-
-const calendar = new Date();
-console.log('calendar', calendar)
