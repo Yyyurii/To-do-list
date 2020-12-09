@@ -2,6 +2,8 @@ const taskInput = document.querySelector('.task-input');
 const addTaskBtn = document.querySelector('.add-task-btn');
 const tasksList = document.querySelector('.tasks-list');
 const calendarDate = document.querySelector('.calendar');
+const memo = document.querySelector('.memo');
+const memoInput = document.querySelector('.memo-input');
 
 let tasks;
 !localStorage.tasks ? tasks = [] : tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -12,6 +14,7 @@ function Task(description) {
   this.description = description;
   this.completed = false;
   this.fixed = false;
+  this.memo = false;
 };
 
 (() => {
@@ -45,12 +48,13 @@ const createTemplate = (task, index) => {
         </div>
         <input onclick="completeTask(${index})" class="custom-checkbox" type="checkbox" id="item_${index}" ${task.completed ? 'checked' : ''}>
         <label for="item_${index}">${task.description}</label>
+        <label class="${task.memo ? '' : 'hide'}" for="item_${index}">(${task.memo})</label>
       </div>
       <i class="fas fa-ellipsis-v extra-menu-btn" onclick="onToggleExtraMenu(${index})" data-toggle="modal"></i>
       <div class="extra-menu hide">
         <div class="arrow-up"></div>
         <div class="extra-menu__item thumbtack" onclick="fixedTask(${index})"><i class="fas fa-thumbtack"></i>Pin on the top</div>
-        <div class="extra-menu__item file-signature"><i class="fas fa-file-signature"></i>Add a memo</div>
+        <div class="extra-menu__item file-signature" onclick="memoTask(${index})"><i class="fas fa-file-signature"></i>Add a memo</div>
         <div class="extra-menu__item trash-alt" onclick="deleteTask(${index})"><i class="fas fa-trash-alt"></i>Delete</div>
       </div>
     </div>
@@ -81,6 +85,42 @@ const fixedTask = index => {
   fillTasksList();
 }
 
+const hideMemoCover = () => {
+  console.log('hidememoCover')
+
+  if (document.querySelector('#cover-div')) {
+    document.querySelector('#cover-div').addEventListener('click', () => {
+      console.log('click memmo')
+      document.getElementById('cover-div').remove();
+      memo.classList.add('hide');
+    })
+  }
+
+}
+
+const memoTask = index => {
+  memo.classList.remove('hide');
+  showCover(document.querySelector('.app'), '2');
+  const extraMenu = document.querySelectorAll('.extra-menu');
+  extraMenu[index].classList.add('hide');
+
+  if (document.querySelector('#cover-div2')) {
+    document.querySelector('#cover-div2').addEventListener('click', () => {
+      console.log('click memmo')
+      document.getElementById('cover-div2').remove();
+      memo.classList.add('hide');
+      hideCover();
+      if (memoInput.value !== '') {
+        tasks[index].memo = memoInput.value;
+        memoInput.value = '';
+        updateLocalStrg();
+        fillTasksList();
+      }
+    })
+  }
+
+}
+
 const deleteTask = index => {
   tasksListItem[index].classList.add('delition');
   tasks.splice(index, 1);
@@ -104,17 +144,6 @@ const updateLocalStrg = () => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-const allTasks = () => {
-  tasks = JSON.parse(localStorage.getItem('tasks'));
-  fillTasksList();
-}
-
-const completedTasks = () => {
-  const completedTasks = tasks.length && tasks.filter(item => item.completed == true);
-  tasks = [...completedTasks];
-  fillTasksList();
-}
-
 addTaskBtn.addEventListener('click', () => {
   tasks.push(new Task(taskInput.value));
   updateLocalStrg();
@@ -122,14 +151,13 @@ addTaskBtn.addEventListener('click', () => {
   taskInput.value = '';
 });
 
-function showCover() {
+function showCover(parent, index) {
   const coverDiv = document.createElement('div');
-  coverDiv.id = 'cover-div';
-  tasksList.append(coverDiv);
+  coverDiv.id = `cover-div${index}`;
+  parent.append(coverDiv);
 }
 
 function hideCover() {
-  const coverDiv = document.getElementById('cover-div');
   if (document.getElementById('cover-div')) {
     document.getElementById('cover-div').remove();
   }
@@ -141,7 +169,7 @@ function hideCover() {
 
 function onToggleExtraMenu(index) {
   const extraMenu = document.querySelectorAll('.extra-menu');
-  showCover();
+  showCover(tasksList, '');
   extraMenu[index].classList.remove('hide');
   if (document.querySelector('#cover-div')) {
     document.querySelector('#cover-div').addEventListener('click', () => {
